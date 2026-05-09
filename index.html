@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div class="login-wrapper" id="loginWrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">🎓</div>
+        <h1 class="login-title">EduManage</h1>
+        <p class="login-subtitle">Student Management System</p>
+      </div>
+
+      <div class="login-tabs">
+        <button class="login-tab active" id="tabAdmin" onclick="switchTab('admin')">👨‍💼 Admin</button>
+        <button class="login-tab" id="tabStudent" onclick="switchTab('student')">👨‍🎓 Student</button>
+      </div>
+
+      <div id="loginError" class="login-error" style="display:none"></div>
+
+      <div class="form-group">
+        <label class="form-label" id="loginLabel">Username</label>
+        <input class="form-control" id="loginUser" placeholder="Enter username" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <div style="position:relative">
+          <input class="form-control" id="loginPass" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter') doLogin()" />
+          <span onclick="togglePass()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px" id="eyeIcon">👁️</span>
+        </div>
+      </div>
+
+      <div id="adminHint" class="login-hint">
+        💡 Admin: username = <b>admin</b> | password = <b>admin123</b>
+      </div>
+      <div id="studentHint" class="login-hint" style="display:none">
+        💡 Student Roll No = <b>COL001</b> | password = <b>student123</b>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;padding:12px;font-size:15px;margin-top:8px" onclick="doLogin()">
+        🔐 Login
+      </button>
+
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="mainApp" style="display:none;width:100%;min-height:100vh">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">EduManage</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav" id="sidebarNav"></nav>
+      <div style="padding:12px 8px;border-top:1px solid rgba(255,255,255,0.08)">
+        <div id="loggedInUser" style="padding:10px 14px;font-size:12px;color:#94a3b8;margin-bottom:4px"></div>
+        <button class="nav-item" onclick="doLogout()" style="width:100%;border:none;cursor:pointer;background:rgba(220,38,38,0.15);color:#fca5a5">
+          <span class="nav-icon">🚪</span> Logout
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+        <div class="topbar-right" style="display:flex;align-items:center;gap:8px">
+          <button class="dark-toggle" id="darkToggleBtn" onclick="toggleDarkMode()">🌙 Dark</button>
+          <button class="btn btn-secondary btn-sm no-print" onclick="saveToLocalStorage()">💾 Save</button>
+          <div style="position:relative">
+            <button class="notif-btn" id="notifBtn" onclick="toggleNotifications()">
+              🔔
+              <span class="notif-badge" id="notifBadge" style="display:none">0</span>
+            </button>
+            <div class="notif-dropdown" id="notifDropdown">
+              <div style="padding:12px 16px;font-weight:600;border-bottom:1px solid var(--border)">🔔 Notifications</div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+          <span class="admin-badge" id="roleBadge">Admin</span>
+        </div>
+      </header>
+      <div class="content-area" id="contentArea"></div>
+    </main>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Modal</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+  <script src="js/data.js"></script>
+<script src="js/students.js"></script>
+<script src="js/grades.js"></script>
+<script src="js/attendance.js"></script>
+<script src="js/timetable.js"></script>
+<script src="js/fees.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/student-portal.js"></script>
+<script src="js/features.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
